@@ -1,0 +1,311 @@
+/* --- Variáveis CSS e Setup --- */
+:root {
+    --bg-dark: #081425;
+    --bg-light: #102947;
+    --accent-dark: #5C8CC2;
+    --accent-light: #89B4E5;
+    --text-glow: #D7EEFF;
+    --text-main: #E8F2FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Rolagem suave nativa */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* --- Efeito Background com Canvas --- */
+#particles-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Fica no fundo absoluto */
+    pointer-events: none;
+}
+
+/* --- Utilitários Globais --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center { text-align: center; }
+.section-padding { padding: 120px 0; }
+.section-title { margin-bottom: 60px; font-size: 2.5em; }
+
+/* Efeito de Vidro (Glassmorphism) */
+.glass {
+    background: rgba(16, 41, 71, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(137, 180, 229, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+}
+
+/* Brilho Suave nos Títulos */
+.glow-text {
+    color: var(--text-glow);
+    text-shadow: 0 0 10px var(--accent-light), 0 0 25px var(--accent-dark);
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+/* --- Header / Navbar --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.4s ease;
+    padding: 20px 0;
+}
+
+header.scrolled {
+    background: rgba(8, 20, 37, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(137, 180, 229, 0.1);
+    padding: 10px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-glow);
+    text-shadow: 0 0 8px var(--accent-light);
+}
+
+/* --- Hero Section --- */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-parallax-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 120%; /* Altura extra para o parallax */
+    background: url('https://images.unsplash.com/photo-1534214526114-0ea4d47b04f2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    opacity: 0.2; /* Muito escuro e sutil */
+    z-index: -1;
+    /* Mistura a imagem com o degradê do fundo */
+    mix-blend-mode: overlay; 
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: clamp(3em, 8vw, 6em);
+    margin-bottom: 10px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+.hero-content .subtitle {
+    font-size: 1.2em;
+    color: var(--accent-light);
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    background: rgba(92, 140, 194, 0.2);
+    border: 1px solid var(--accent-dark);
+    color: var(--text-glow);
+    padding: 12px 35px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.btn:hover {
+    background: var(--accent-dark);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    margin: 5px;
+}
+
+/* --- Latest Release --- */
+.split-layout {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    padding: 40px;
+}
+
+.cover-art {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    transition: transform 0.5s ease;
+}
+
+.cover-art:hover {
+    transform: scale(1.02);
+}
+
+.release-info h2 { font-size: 2em; margin-bottom: 10px; }
+.release-info h3 { color: var(--accent-light); font-weight: 300; margin-bottom: 20px; }
+.release-info p { margin-bottom: 30px; font-size: 1.1em; color: rgba(232, 242, 255, 0.8); }
+
+/* --- About --- */
+.text-box {
+    padding: 60px;
+    text-align: center;
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* --- Discography Grid --- */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.album-card {
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.album-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-light);
+}
+
+.album-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.album-card:hover img {
+    opacity: 1;
+}
+
+.album-card h3 { color: var(--text-glow); font-weight: 300; margin-bottom: 5px; }
+.album-card .year { display: block; color: var(--accent-dark); margin-bottom: 15px; font-size: 0.9em; }
+
+/* --- Gallery Grid --- */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    padding: 5px;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: grayscale(80%) sepia(20%) hue-rotate(180deg); /* Tom azulado triste */
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+    filter: grayscale(0%);
+    z-index: 2;
+}
+
+/* --- Socials & Footer --- */
+.socials-container { padding: 60px 20px; }
+.social-links { margin-top: 30px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.glow-link { color: var(--accent-light); text-decoration: none; font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s ease; }
+.glow-link:hover { color: var(--text-glow); text-shadow: 0 0 15px var(--text-glow); }
+
+.glass-footer {
+    background: rgba(8, 20, 37, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px 0;
+    border-top: 1px solid rgba(137, 180, 229, 0.1);
+    color: var(--accent-dark);
+    font-size: 0.9em;
+}
+
+/* --- Animação de Reveal (Fade In ao rolar a página) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .split-layout { flex-direction: column; text-align: center; padding: 20px; }
+    .nav-links { display: none; /* Em um site real, aqui entraria um menu hamburguer */ }
+    .text-box { padding: 30px 20px; font-size: 1em; }
+    .section-padding { padding: 80px 0; }
+}
