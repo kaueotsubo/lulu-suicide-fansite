@@ -27,7 +27,3 @@
 ## 🚀 Como rodar o projeto localmente
 
 Como o projeto foi construído com tecnologias front-end puras (Vanilla), não há necessidade de instalar dependências (como Node.js ou NPM).
-
-1. Faça o clone do repositório:
-   ```bash
-   git clone [https://github.com/kaueotsubo/lulu-suicide-fansite.git](https://github.com/kaueotsubo/lulu-suicide-fansite.git)
