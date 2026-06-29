@@ -302,10 +302,93 @@ header.scrolled {
     transform: translateY(0);
 }
 
+/* --- Menu Hambúrguer (Oculto no Desktop) --- */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 101; 
+    /* Bordinha estilo site do Ghost */
+    border: 1px solid rgba(137, 180, 229, 0.4);
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: transparent;
+}
+
+.hamburger .bar {
+    width: 26px;
+    height: 2px;
+    background-color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
 /* --- Responsividade --- */
 @media (max-width: 768px) {
     .split-layout { flex-direction: column; text-align: center; padding: 20px; }
-    .nav-links { display: none; /* Em um site real, aqui entraria um menu hamburguer */ }
     .text-box { padding: 30px 20px; font-size: 1em; }
     .section-padding { padding: 80px 0; }
+
+    /* Exibe o ícone do hambúrguer */
+    .hamburger {
+        display: flex;
+    }
+
+    /* O Menu Dropdown (Desce do topo) */
+    .nav-links {
+        display: flex !important;
+        position: absolute;
+        top: 100%; /* Cola exatamente embaixo do header */
+        left: 0;
+        width: 100%; /* Ocupa a largura toda da tela */
+        background: rgba(8, 20, 37, 0.98); 
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(137, 180, 229, 0.1);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        /* Animação de descer (Escondido por padrão) */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        
+        z-index: 100;
+        margin: 0;
+        padding: 0; /* Sem espaçamento quando está fechado */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra embaixo */
+    }
+
+    /* A classe que o JavaScript adiciona para o menu abrir */
+    .nav-links.active {
+        max-height: 500px; /* Altura suficiente para mostrar os links */
+        padding: 20px 0;
+    }
+
+    /* Espaçamento dos links e botões no mobile */
+    .nav-links li {
+        margin: 12px 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.1em;
+    }
+
+    .lang-toggle {
+        margin-left: 0 !important;
+        margin-bottom: 15px;
+    }
+
+    /* Animação do botão hambúrguer virando "X" */
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+        background-color: var(--accent-light);
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+        background-color: var(--accent-light);
+    }
 }

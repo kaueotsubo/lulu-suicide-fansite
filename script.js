@@ -48,6 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // --- 5. Menu Hambúrguer (Mobile) ---
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links li a');
+
+    // Abre e fecha o menu ao clicar no hambúrguer
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Fecha o menu automaticamente quando o usuário clica em um link
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
     // Classe da Partícula
     class Particle {
         constructor() {
