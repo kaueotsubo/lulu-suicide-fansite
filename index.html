@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LULU SUICIDE</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/othergirzs.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <canvas id="particles-bg"></canvas>
@@ -16,11 +19,17 @@
             <div class="logo glow-text">LS.</div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#latest-release">Release</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#discography">Discography</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
+                    <div class="lang-toggle" style="display: flex; gap: 10px; margin-left: 20px;">
+                        <button id="lang-en" class="btn-lang active"
+                            style="background:none; border:none; color:var(--text-glow); cursor:pointer; font-weight:bold;">EN</button>
+                        <button id="lang-pl" class="btn-lang"
+                            style="background:none; border:none; color:var(--text-main); cursor:pointer;">PL</button>
+                    </div>
+                    <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#latest-release" data-i18n="nav_release">Release</a></li>
+                    <li><a href="#about" data-i18n="nav_about">About</a></li>
+                    <li><a href="#discography" data-i18n="nav_disco">Discography</a></li>
+                    <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,8 +40,8 @@
             <div class="hero-parallax-bg"></div>
             <div class="hero-content reveal">
                 <h1 class="glow-text">LULU SUICIDE</h1>
-                <p class="subtitle">Echoes in the rain.</p>
-                <a href="#latest-release" class="btn">Listen Now</a>
+                <p class="subtitle" data-i18n="hero_subtitle">sad band from poznań, poland.</p>
+                <a href="#latest-release" class="btn" data-i18n="hero_btn">Listen Now</a>
             </div>
         </section>
 
@@ -40,16 +49,18 @@
             <div class="container glass reveal">
                 <div class="split-layout">
                     <div class="release-image">
-                        <img src="https://images.unsplash.com/photo-1518281361980-b26bfd556770?auto=format&fit=crop&w=800&q=80" alt="Latest Release Cover" class="cover-art">
+                        <img src="img/fibreoptic.jpg" alt="Latest Release Cover" class="cover-art">
                     </div>
                     <div class="release-info">
-                        <h2 class="glow-text">Latest Release</h2>
-                        <h3>Melancholia (2026)</h3>
-                        <p>A journey through lonely nights and empty streets. The new album blends ethereal vocals with walls of hazy guitars, creating a dreamscape of pure nostalgia.</p>
+                        <h2 class="glow-text" data-i18n="release_title">Latest Release</h2>
+                        <h3>Fiber Optic Lovers (2026)</h3>
+                        <p data-i18n="release_desc">Fully DYI made album about love and death.</p>
                         <div class="streaming-links">
-                            <a href="#" class="btn btn-outline">Spotify</a>
+                            <a href="https://open.spotify.com/intl-pt/artist/06jfYdAKhLjZiFl6do9jdc?si=BVNZ9--cTLaehvJXVsamog&nd=1&dlsi=16135e825fd648b4"
+                                class="btn btn-outline">Spotify</a>
                             <a href="#" class="btn btn-outline">Apple Music</a>
-                            <a href="#" class="btn btn-outline">Bandcamp</a>
+                            <a href="https://lulusuicide.bandcamp.com/" class="btn btn-outline"
+                                target="_blank">Bandcamp</a>
                         </div>
                     </div>
                 </div>
@@ -58,33 +69,33 @@
 
         <section id="about" class="section-padding">
             <div class="container reveal">
-                <h2 class="glow-text text-center section-title">About the Band</h2>
+                <h2 class="glow-text text-center section-title" data-i18n="about_title">About the Band</h2>
                 <div class="glass text-box">
-                    <p>Formed in the quiet isolation of endless rainy nights, Lulu Suicide is a dream-pop/shoegaze collective that channels sorrow into walls of beautiful noise. Drawing inspiration from the quietest moments of dawn, their music is an embrace for those who wander alone.</p>
+                    <p data-i18n="hero_subtitle">sad band from poznań, poland</p>
                     <br>
-                    <p><strong>Influences:</strong> Cocteau Twins, Slowdive, My Bloody Valentine, Beach House.</p>
+                    <p><strong data-i18n="about_influences">Influences:</strong> Cocteau Twins, Slowdive, My Bloody Valentine, Beach House.</p>
                 </div>
             </div>
         </section>
 
         <section id="discography" class="section-padding">
             <div class="container reveal">
-                <h2 class="glow-text text-center section-title">Discography</h2>
+                <h2 class="glow-text text-center section-title" data-i18n="disco_title">Discography</h2>
                 <div class="grid-cards">
                     <div class="card glass album-card">
-                        <img src="https://images.unsplash.com/photo-1428592953211-077101b2021b?auto=format&fit=crop&w=500&q=80" alt="Album Cover">
+                        <img src="img/hi_im_ready.jpg" alt="Album Cover">
                         <div class="card-content">
-                            <h3>Midnight Tears</h3>
+                            <h3>hi im ready to die</h3>
                             <span class="year">2024</span>
-                            <p>A deep dive into isolation, characterized by heavy reverb and soft whispers.</p>
+                            <p data-i18n="disco_desc_1">and now shes dead</p>
                         </div>
                     </div>
                     <div class="card glass album-card">
-                        <img src="https://images.unsplash.com/photo-1518281361980-b26bfd556770?auto=format&fit=crop&w=500&q=80" alt="Album Cover">
+                        <img src="img/fibreoptic.jpg" alt="Album Cover">
                         <div class="card-content">
-                            <h3>Melancholia</h3>
+                            <h3>Fiber Optic Lovers</h3>
                             <span class="year">2026</span>
-                            <p>Their most refined work. Pure shoegaze bliss.</p>
+                            <p data-i18n="disco_desc_2">Fully DYI made album about love and death.</p>
                         </div>
                     </div>
                 </div>
@@ -93,23 +104,24 @@
 
         <section id="gallery" class="section-padding">
             <div class="container reveal">
-                <h2 class="glow-text text-center section-title">Gallery</h2>
+                <h2 class="glow-text text-center section-title" data-i18n="gallery_title">Gallery</h2>
                 <div class="grid-gallery">
-                    <img src="https://images.unsplash.com/photo-1516280440502-628d06ee29f7?auto=format&fit=crop&w=600&q=80" alt="Band Photo 1" class="glass gallery-img">
-                    <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=600&q=80" alt="Band Photo 2" class="glass gallery-img">
-                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=600&q=80" alt="Band Photo 3" class="glass gallery-img">
+                    <img src="img/band_photo1.jpg" alt="Band Photo 1" class="glass gallery-img">
+                    <img src="img/band_photo2.jpg" alt="Band Photo 2" class="glass gallery-img">
+                    <img src="img/band_photo3.jpg" alt="Band Photo 3" class="glass gallery-img">
                 </div>
             </div>
         </section>
 
         <section id="socials" class="section-padding text-center">
             <div class="container reveal glass socials-container">
-                <h2 class="glow-text">Connect</h2>
+                <h2 class="glow-text" data-i18n="socials_title">Connect</h2>
                 <div class="social-links">
-                    <a href="#" class="glow-link">Instagram</a>
-                    <a href="#" class="glow-link">Spotify</a>
-                    <a href="#" class="glow-link">Bandcamp</a>
-                    <a href="#" class="glow-link">YouTube</a>
+                    <a href="https://www.instagram.com/lulusuicideband" class="glow-link">Instagram</a>
+                    <a href="https://open.spotify.com/intl-pt/artist/06jfYdAKhLjZiFl6do9jdc?si=BVNZ9--cTLaehvJXVsamog&nd=1&dlsi=16135e825fd648b4"
+                        class="glow-link">Spotify</a>
+                    <a href="https://lulusuicide.bandcamp.com/" class="glow-link" target="_blank">Bandcamp</a>
+                    <a href="https://www.youtube.com/@LuluSuicide" class="glow-link">YouTube</a>
                 </div>
             </div>
         </section>
@@ -117,10 +129,11 @@
 
     <footer class="glass-footer">
         <div class="container text-center">
-            <p>Created by a fan for the fans. LULU SUICIDE Fan Site © 2026.</p>
+            <p data-i18n="footer_text">Created by a fan for the fans. LULU SUICIDE Fan Site © 2026.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

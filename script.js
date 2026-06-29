@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 2. Animação de Reveal (Fade-in das seções ao rolar) ---
     const reveals = document.querySelectorAll('.reveal');
     const revealOptions = {
-        threshold: 0.15, // Aciona quando 15% do elemento estiver visível
+        threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
     };
 
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
             entry.target.classList.add('active');
-            observer.unobserve(entry.target); // Para a animação acontecer apenas uma vez
+            observer.unobserve(entry.target);
         });
     }, revealOptions);
 
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroBg = document.querySelector('.hero-parallax-bg');
     window.addEventListener('scroll', () => {
         let scrollPosition = window.pageYOffset;
-        // Move a imagem de fundo a 40% da velocidade da rolagem
         heroBg.style.transform = 'translateY(' + scrollPosition * 0.4 + 'px)';
     });
 
@@ -42,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
 
-    // Ajusta o tamanho do canvas para cobrir a janela
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -79,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         draw() {
-            ctx.fillStyle = `rgba(137, 180, 229, ${this.opacity})`; // Cor Azul Claro var(--accent-light)
+            ctx.fillStyle = `rgba(137, 180, 229, ${this.opacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -89,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inicializa o array de partículas
     function initParticles() {
         particlesArray = [];
-        // Quantidade de partículas baseada na largura da tela para não pesar a performance
         const numberOfParticles = (canvas.width * canvas.height) / 15000;
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
@@ -109,3 +106,69 @@ document.addEventListener("DOMContentLoaded", () => {
     initParticles();
     animateParticles();
 });
+
+// Dicionário de traduções
+const translations = {
+    en: {
+        nav_home: "Home",
+        nav_release: "Release",
+        nav_about: "About",
+        nav_disco: "Discography",
+        nav_gallery: "Gallery",
+        hero_subtitle: "sad band from poznań, poland.",
+        hero_btn: "Listen Now",
+        release_title: "Latest Release",
+        release_desc: "Fully DYI made album about love and death.",
+        about_title: "About the Band",
+        about_influences: "Influences:",
+        disco_title: "Discography",
+        disco_desc_1: "and now shes dead",
+        disco_desc_2: "Fully DYI made album about love and death.",
+        gallery_title: "Gallery",
+        socials_title: "Connect",
+        footer_text: "Created by a fan for the fans. LULU SUICIDE Fan Site © 2026."
+    },
+    pl: {
+        nav_home: "Główna",
+        nav_release: "Nowości",
+        nav_about: "O zespole",
+        nav_disco: "Dyskografia",
+        nav_gallery: "Galeria",
+        hero_subtitle: "smutny zespół z Poznania, Polska.",
+        hero_btn: "Słuchaj teraz",
+        release_title: "Najnowsze Wydanie",
+        release_desc: "W pełni niezależny (DIY) album o miłości i śmierci.",
+        about_title: "O zespole",
+        about_influences: "Inspiracje:",
+        disco_title: "Dyskografia",
+        disco_desc_1: "a teraz ona nie żyje",
+        disco_desc_2: "W pełni niezależny (DIY) album o miłości i śmierci.",
+        gallery_title: "Galeria",
+        socials_title: "Kontakt",
+        footer_text: "Stworzone przez fana dla fanów. LULU SUICIDE Fan Site © 2026."
+    }
+};
+
+// Função para trocar o idioma
+function setLanguage(lang) {
+    // Pega todos os elementos que têm o atributo data-i18n
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        // Atualiza o texto do elemento com a tradução correspondente
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+
+    // Atualiza o estilo dos botões para mostrar qual está ativo
+    document.getElementById('lang-en').style.color = lang === 'en' ? 'var(--text-glow)' : 'var(--text-main)';
+    document.getElementById('lang-pl').style.color = lang === 'pl' ? 'var(--text-glow)' : 'var(--text-main)';
+    document.getElementById('lang-en').style.fontWeight = lang === 'en' ? 'bold' : 'normal';
+    document.getElementById('lang-pl').style.fontWeight = lang === 'pl' ? 'bold' : 'normal';
+}
+
+// Event Listeners pros botões de idioma
+document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('lang-pl').addEventListener('click', () => setLanguage('pl'));
